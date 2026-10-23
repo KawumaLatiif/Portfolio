@@ -16,7 +16,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <Code2 className="h-8 w-8" />
-              <span className="text-2xl font-bold">Shanon Simon Lubega</span>
+              <span className="text-2xl font-bold">Latif Kawuma</span>
             </div>
             <p className="text-primary-200">
               Full Stack Developer crafting digital experiences with modern technologies.
@@ -59,7 +59,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-primary-800 mt-8 pt-8 text-center text-primary-300">
-          <p>© {new Date().getFullYear()} Shanon Simon Lubega. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Latif Kawuma. All rights reserved.</p>
         </div>
       </div>
     </footer>
