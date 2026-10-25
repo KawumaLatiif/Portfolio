@@ -1,64 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Code2, Server, Database } from 'lucide-react';
+import { Code2, Cpu, Map, Zap, Utensils } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
-    {
-      title: 'E-Commerce Platform',
-      description: 'Full-featured online store with cart, payment integration, and admin dashboard.',
-      tags: ['PHP', 'JavaScript', 'TailwindCSS', 'SQL'],
-      github: 'https://github.com/shanon082/E-commerce-using-tailwind',
-      live: 'https://eccomerce.fast-page.org/',
-      icon: Code2,
-      color: 'bg-blue-100 text-blue-800',
-    },
-    {
-      title: 'Sickle-cell Image Multiplier',
-      description: 'A system that help researchers in medical to increase the images in thier dataset',
-      tags: ['React.js', 'Django', 'TailwindCSS', 'SQLite'],
-      github: 'https://github.com/shanon082/Sickle-cell-Image-Multiplier',
-      live: 'https://api.demo.com',
-      icon: Server,
-      color: 'bg-green-100 text-green-800',
-    },
-    {
-      title: 'Secure Authetication System',
-      description: 'Secure Authentication system',
-      tags: ['Node.js', 'Express', 'MongoDB', 'React.js'],
-      github: 'https://github.com/shanon082/Secure-Authentication-System',
-      live: 'https://analytics.demo.com',
-      icon: Database,
-      color: 'bg-purple-100 text-purple-800',
-    },
-    {
-      title: 'Timetable Generator System',
-      description: 'Automated system with AI feature that enables instutitions to generate individuals',
-      tags: ['Laravel', 'React.js', 'TailwindCSS', 'SQL'],
-      github: 'https://github.com/shanon082/final_year_project',
-      live: 'http://shanon082.byethost7.com/',
-      icon: Code2,
-      color: 'bg-blue-100 text-blue-800',
-    },
-    {
-      title: 'Employee Management System',
-      description: 'A system that enables employers to manage thier employees',
-      tags: ['HTML', 'PHP', 'CSS', 'Javascript', 'SQL'],
-      github: '',
-      live: '',
-      icon: Server,
-      color: 'bg-green-100 text-green-800',
-    },
-    {
-      title: 'Smart Irrigation System',
-      description: 'Farmers ability to control the sprinkler basing on the soil moisture content',
-      tags: ['HTML', 'Javascript', 'Firebase', 'CSS', 'C++ (Arduino)'],
-      github: '',
-      live: '',
-      icon: Database,
-      color: 'bg-purple-100 text-purple-800',
-    },
+    { title: 'Credit-Based Electricity Access System', description: 'Contributed to software components for a smart energy platform designed to support credit-based electricity access. Developed with a multidisciplinary team at Soroti University.', tags: ['Smart energy', 'Software development', 'Team project'], icon: Zap, color: 'bg-blue-100 text-blue-800' },
+    { title: 'Sickle Cell Detection AI Model', description: 'An academic machine-learning project using convolutional neural networks to investigate sickle cell detection.', tags: ['Machine learning', 'CNNs', 'Academic research'], icon: Cpu, color: 'bg-purple-100 text-purple-800' },
+    { title: 'Land Suitability Analysis', description: 'Collaborated on a GIS solution assessing oil palm and cassava suitability in Anambra State, Nigeria. Automated geospatial workflows with Python and developed the project website.', tags: ['ArcGIS / QGIS', 'Python', 'HTML / CSS / JavaScript'], icon: Map, color: 'bg-green-100 text-green-800' },
+    { title: 'Food Ordering Website', description: 'Developed a web-based food ordering system, combining a browser interface with PHP and database technologies.', tags: ['HTML', 'CSS', 'PHP', 'Databases'], icon: Utensils, color: 'bg-blue-100 text-blue-800' },
+    { title: 'Hotel Management System', description: 'Built a C application to manage hotel-related operations and apply structured programming concepts.', tags: ['C', 'Application development'], icon: Code2, color: 'bg-purple-100 text-purple-800' },
   ];
 
   return (
@@ -72,8 +23,7 @@ const Projects = () => {
         >
           <h2 className="text-4xl font-bold mb-4 text-primary-900">Featured Projects</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Here are some of my recent projects that showcase my skills in
-            full-stack development and problem-solving.
+            Selected work in software development, energy access, machine learning and geospatial analysis.
           </p>
         </motion.div>
 
@@ -85,7 +35,7 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="card-hover bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100"
+              className="group card-hover bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100"
             >
               {/* Project Header */}
               <div className="p-6">
@@ -93,22 +43,7 @@ const Projects = () => {
                   <div className={`p-3 rounded-xl ${project.color}`}>
                     <project.icon size={24} />
                   </div>
-                  <div className="flex gap-2">
-                    <a
-                      href={project.github}
-                      className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-600 hover:text-primary-700"
-                      aria-label="GitHub"
-                    >
-                      <Github size={20} />
-                    </a>
-                    <a
-                      href={project.live}
-                      className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-600 hover:text-primary-700"
-                      aria-label="Live Demo"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-                  </div>
+
                 </div>
 
                 {/* Project Content */}
@@ -141,8 +76,8 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <a href='https://github.com/shanon082' className="btn-primary">
-            View All Projects
+          <a href="#contact" className="btn-primary">
+            Discuss a Project
           </a>
         </motion.div>
       </div>

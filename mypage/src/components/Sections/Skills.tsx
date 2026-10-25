@@ -2,42 +2,14 @@
 
 import { motion } from 'framer-motion';
 import { 
-  Code2, Database, Server, Cpu, 
-  Cloud, Terminal, Layout, Smartphone 
+  Code2, Database, Server 
 } from 'lucide-react';
 
 const Skills = () => {
   const skillCategories = [
-    {
-      title: 'Frontend Development',
-      icon: Layout,
-      skills: [
-        { name: 'React.js', level: 85 },
-        { name: 'Next.js', level: 80 },
-        { name: 'TypeScript', level: 85 },
-        { name: 'Tailwind CSS', level: 95 },
-      ],
-    },
-    {
-      title: 'Backend Development',
-      icon: Server,
-      skills: [
-        { name: 'Node.js', level: 90 },
-        { name: 'Python', level: 85 },
-        { name: 'PostgreSQL', level: 80 },
-        { name: 'REST APIs', level: 95 },
-      ],
-    },
-    {
-      title: 'DevOps & Tools',
-      icon: Cloud,
-      skills: [
-        { name: 'Docker', level: 75 },
-        { name: 'Git', level: 95 },
-        { name: 'AWS', level: 70 },
-        { name: 'CI/CD', level: 60 },
-      ],
-    },
+    { title: 'Software & Web', icon: Code2, skills: ['Python, Java, C & C++', 'JavaScript & TypeScript', 'Django, React & Angular', 'PHP, Bootstrap & Tailwind CSS'] },
+    { title: 'Data & Geospatial', icon: Database, skills: ['Power BI & STATA', 'ArcGIS & QGIS', 'MySQL & PostgreSQL', 'Machine learning & CNNs'] },
+    { title: 'Networks & Systems', icon: Server, skills: ['TCP/IP & switching', 'Network troubleshooting & NOC', 'Linux, Git & Docker', 'Authentication & access control'] },
   ];
 
   return (
@@ -76,23 +48,7 @@ const Skills = () => {
               {/* Skills List */}
               <div className="space-y-6">
                 {category.skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-1">
-                      <span className="font-medium text-gray-700">{skill.name}</span>
-                      <span className="text-primary-700 font-semibold">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                        className="h-full bg-gradient-to-r from-primary-600 to-primary-700 rounded-full"
-                      />
-                    </div>
-                  </div>
+                  <div key={skill} className="flex items-start gap-3 border-b border-gray-100 pb-4 last:border-0"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-700"/><span className="font-medium text-gray-700">{skill}</span></div>
                 ))}
               </div>
             </motion.div>
@@ -111,9 +67,9 @@ const Skills = () => {
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[
-              'JavaScript', 'TypeScript', 'React', 'Next.js',
-              'Node.js', 'Python', 'PostgreSQL', 'MongoDB',
-              'Docker', 'AWS', 'Git', 'Tailwind'
+              'Python', 'TypeScript', 'React', 'Django',
+              'PHP', 'MATLAB', 'PostgreSQL', 'Power BI',
+              'Docker', 'QGIS', 'Git', 'Linux'
             ].map((tech, index) => (
               <motion.div
                 key={tech}

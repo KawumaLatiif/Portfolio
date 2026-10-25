@@ -1,9 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ChevronRight, Code2, Download } from 'lucide-react';
-import image from "@/app/icon.png";
-import Image from "next/image";
+import { ChevronRight, Download, Cpu, Code2, Network, ChartNoAxesCombined } from 'lucide-react';
+
+
 
 const Hero = () => {
   const fadeInUp = {
@@ -12,7 +12,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center pt-16 bg-gradient-to-b from-white to-primary-50">
+    <section id="home" className="min-h-screen flex items-center pt-28 pb-20 bg-gradient-to-b from-white to-primary-50">
       <div className="container-responsive section-padding">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text Content */}
@@ -39,23 +39,21 @@ const Hero = () => {
               variants={fadeInUp}
               className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4"
             >
-              Shanon Simon <span className="text-primary-700">Lubega</span>
+              Kawuma <span className="text-primary-700">Latiif</span>
             </motion.h1>
             
             <motion.h2
               variants={fadeInUp}
               className="text-2xl md:text-3xl text-gray-700 mb-6"
             >
-              Full Stack Developer & Software Developer
+              Electronics & Computer Engineer
             </motion.h2>
             
             <motion.p
               variants={fadeInUp}
               className="text-gray-600 mb-8 text-lg leading-relaxed"
             >
-              I build exceptional digital experiences focused on performance,
-              accessibility, and clean code. Specializing in modern web
-              technologies to create scalable solutions.
+              I develop software, support reliable networks, and turn data into practical insights. My work spans smart energy, geospatial analysis, and applied machine learning.
             </motion.p>
             
             <motion.div
@@ -67,8 +65,8 @@ const Hero = () => {
                 <ChevronRight className="ml-2 size-5" />
               </a>
               <a
-                href="/SHANON_SIMON_LUBEGA_CV.pdf"
-                download="SHANON_SIMON_LUBEGA_CV.pdf"
+                href="/Kawuma_Latiif_CV.pdf"
+                download="Kawuma_Latiif_CV.pdf"
                 className="btn-secondary flex items-center"
               >
                 <Download className="mr-2 size-5" />
@@ -84,22 +82,10 @@ const Hero = () => {
             transition={{ duration: 0.5 }}
             className="relative"
           >
-            <div className="relative w-full h-96 lg:h-[500px] bg-gradient-to-br from-primary-100 to-primary-300 rounded-3xl overflow-hidden shadow-2xl">
-              {/* Placeholder for developer illustration */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <Image src={image} alt='profile picture' fill
-                className="object-cover rounded-4xl shadow-4xl"/>
-                </div>
-              </div>
-              
-              {/* Floating elements */}
-              {/* <div className="absolute top-8 left-8 size-16 bg-white rounded-2xl shadow-xl flex items-center justify-center border border-primary-200">
-                <span className="text-primary-800 font-bold text-lg">TS</span>
-              </div>
-              <div className="absolute bottom-12 right-12 size-20 bg-white rounded-2xl shadow-xl flex items-center justify-center border border-primary-200">
-                <span className="text-primary-800 font-bold text-lg">React</span>
-              </div> */}
+            <div className="hero-panel relative w-full min-h-96 lg:min-h-[500px] rounded-3xl overflow-hidden shadow-2xl p-8 sm:p-12 flex flex-col justify-between">
+              <div className="flex items-center justify-between text-blue-200 text-sm"><span>ENGINEERING WITH PURPOSE</span><Cpu size={28} /></div>
+              <div className="py-10"><div aria-hidden="true" className="text-8xl sm:text-9xl font-bold tracking-tighter text-white">KL<span className="text-blue-300">.</span></div><p className="text-blue-100 mt-4 text-lg">Software. Networks. Data.</p></div>
+              <div className="border-t border-white/20 pt-6 flex gap-6 text-blue-100"><Code2 aria-label="Software development"/><Network aria-label="Network engineering"/><ChartNoAxesCombined aria-label="Data analysis"/><span className="ml-auto text-sm">Kampala, Uganda</span></div>
             </div>
           </motion.div>
         </div>

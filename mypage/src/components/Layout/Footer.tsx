@@ -1,11 +1,8 @@
-import { Github, Linkedin, Twitter, Mail, Code2 } from 'lucide-react';
+import { Mail, Code2 } from 'lucide-react';
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/shanon082', label: 'GitHub' },
-    // { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    // { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-    { icon: Mail, href: 'mailto:shanonsimon082@gmail.com', label: 'Email' },
+    { icon: Mail, href: 'mailto:kawumalatiif5@gmail.com', label: 'Email' },
   ];
 
   return (
@@ -16,10 +13,10 @@ const Footer = () => {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <Code2 className="h-8 w-8" />
-              <span className="text-2xl font-bold">Latif Kawuma</span>
+              <span className="text-2xl font-bold">Kawuma Latiif</span>
             </div>
             <p className="text-primary-200">
-              Full Stack Developer crafting digital experiences with modern technologies.
+              Electronics and Computer Engineer working across software, networks and data.
             </p>
           </div>
 
@@ -59,7 +56,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-primary-800 mt-8 pt-8 text-center text-primary-300">
-          <p>© {new Date().getFullYear()} Latif Kawuma. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Kawuma Latiif. All rights reserved.</p>
         </div>
       </div>
     </footer>

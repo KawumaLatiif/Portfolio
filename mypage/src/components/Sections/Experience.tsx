@@ -5,38 +5,12 @@ import { Briefcase, GraduationCap, Calendar, MapPin } from 'lucide-react';
 
 const Experience = () => {
   const experiences = [
-    {
-      type: 'work',
-      title: 'Network Operator',
-      company: 'Soliton Telmec',
-      period: '2026 - current',
-      location: 'Bugolobi, Farady-Road',
-      description: 'Maintainance of MTN wakanet through contact between the Field Team and ZTE for internet restoration.',
-    },
-    {
-      type: 'work',
-      title: 'Full Stack Developer',
-      company: 'Code Craft',
-      period: '2024 - 2025',
-      location: 'india (remotely)',
-      description: 'Participated in development of multiple web applications using React, Node.js, and microservices architecture.',
-    },
-    {
-      type: 'education',
-      title: 'Electronics and Computer Engineering Bsc',
-      company: 'Soroti University',
-      period: '2022 - 2025',
-      location: 'Arapai, Soroti-Uganda',
-      description: 'Specialized in Software Development and Distributed Systems.',
-    },
-    // {
-    //   type: 'education',
-    //   title: 'Bachelor of Software Engineering',
-    //   company: 'MIT',
-    //   period: '2014 - 2018',
-    //   location: 'Cambridge, MA',
-    //   description: 'Graduated with honors. Focus on Web Technologies and Databases.',
-    // },
+    { type: 'work', title: 'Support Engineer — Network Operations Centre', company: 'Soliton Telmec', period: 'December 2025 – Present', location: 'Uganda', description: 'Diagnose network incidents, support CSquared, ZTE and NITA infrastructure, and track escalation and resolution across enterprise telecommunications networks.' },
+    { type: 'work', title: 'Software Engineer — Electricity Sharing Project', company: 'Soroti University', period: 'November 2025 – July 2026', location: 'Uganda', description: 'Contributed to a credit-based electricity access system and collaborated with technical teams on scalable, user-centred software components.' },
+    { type: 'work', title: 'Research Assistant — African BlendED', company: 'ABC BlendEd Course, second edition', period: 'May – July 2025', location: 'Uganda / Nigeria / Mozambique', description: 'Worked with a multinational team on agricultural land suitability for Chelsea Agric. Automated geospatial analysis with Python and built the project website.' },
+    { type: 'work', title: 'IT Intern — Commercial Department', company: 'National Social Security Fund (NSSF)', period: 'June – August 2024', location: 'Uganda', description: 'Supported daily IT operations, data management, dataset preparation and analysis, working across departments to improve internal workflows.' },
+    { type: 'work', title: 'General Manager (Seasonal)', company: 'Bulo Coffee Factory', period: 'May 2021 – August 2024', location: 'Uganda', description: 'Managed coffee milling operations during school and university breaks, supervised production and coordinated day-to-day workflows.' },
+    { type: 'education', title: 'BEng, Electronics and Computer Engineering', company: 'Soroti University', period: '2022 – 2025', location: 'Uganda', description: 'First Class Honors.' },
   ];
 
   return (
@@ -63,8 +37,8 @@ const Experience = () => {
             {experiences.map((exp, index) => (
               <motion.div
                 key={`${exp.title}-${index}`}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 className={`relative lg:w-1/2 ${
@@ -72,7 +46,7 @@ const Experience = () => {
                 }`}
               >
                 {/* Timeline Dot */}
-                <div className="hidden lg:block absolute top-6 -left-2 w-4 h-4 bg-primary-700 rounded-full border-4 border-white shadow-lg" />
+                <div className={`hidden lg:block absolute top-6 w-4 h-4 bg-primary-700 rounded-full border-4 border-white shadow-lg ${index % 2 === 0 ? "-right-2" : "-left-2"}`} />
 
                 {/* Content Card */}
                 <div className="bg-white rounded-2xl shadow-lg p-6 card-hover border border-gray-100">

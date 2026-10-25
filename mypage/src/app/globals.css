@@ -55,8 +55,8 @@
   --color-gray-800: var(--gray-800);
   --color-gray-900: var(--gray-900);
   --color-gray-950: var(--gray-950);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: monospace;
   
   /* Animation keyframes */
   --animate-fade-in: fadeIn 0.5s ease-in-out;
@@ -288,4 +288,34 @@ body {
 /* Timeline line visibility */
 .dark .bg-primary-200 {
   background-color: #374151 !important;
+}
+/* Preserve the supplied navy design, with accessible theme and mobile fixes. */
+@custom-variant dark (&:where(.dark, .dark *));
+html { scroll-padding-top: 6rem; }
+body { margin: 0; }
+button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid #647de8; outline-offset: 4px; }
+section { scroll-margin-top: 5rem; }
+.hero-panel { background: linear-gradient(135deg,#1e2a5a,#1e40af); }
+.contact-card { display:flex; align-items:center; gap:1rem; padding:1rem; border:1px solid var(--gray-100); border-radius:.75rem; background:var(--gray-50); }
+.error-text { color:#b91c1c; margin-top:.3rem; font-size:.875rem; }
+.skip-link { position:fixed; top:-100px; left:1rem; z-index:100; padding:1rem; background:#fff; color:#1e2a5a; }
+.skip-link:focus { top:1rem; }
+.dark { color-scheme: dark; }
+.dark nav { background:rgba(15,23,42,.97); border-color:#334155; }
+.dark .nav-link { color:#cbd5e1; }
+.dark .btn-primary { background:#1e40af; color:#fff; }
+.dark .btn-primary:hover { background:#1e3a8a; color:#fff; }
+.dark .btn-secondary { border-color:#93c5fd; color:#dbeafe; }
+.dark .btn-secondary:hover { background:#1e40af; color:#fff; }
+.dark #home { background-image:linear-gradient(#0f172a,#1e293b); }
+.dark footer { background:#0b1227; }
+.dark footer p, .dark footer h3, .dark footer span { color:#dbeafe; }
+.dark .contact-card { background:#0f172a; border-color:#334155; }
+.dark .border-gray-100 { border-color:#334155; }
+.dark .error-text { color:#fca5a5; }
+.dark .hero-panel span { color:#bfdbfe; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior:auto !important; animation:none !important; transition:none !important; }
 }

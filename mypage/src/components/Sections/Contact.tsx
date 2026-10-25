@@ -1,262 +1,34 @@
 'use client';
-
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
-import { Send, Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
-
-type FormData = {
-  name: string;
-  email: string;
-  message: string;
-};
-
-const Contact = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [submitError, setSubmitError] = useState(false);
-  
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<FormData>();
-
-//   const onSubmit = async (data: FormData) => {
-//     setIsSubmitting(true);
-    
-//     // Simulate API call
-//     await new Promise(resolve => setTimeout(resolve, 1500));
-    
-//     console.log('Form submitted:', data);
-//     setIsSubmitting(false);
-//     setIsSubmitted(true);
-//     reset();
-    
-//     // Reset success message after 3 seconds
-//     setTimeout(() => setIsSubmitted(false), 3000);
-//   };
-
-const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true);
-    setSubmitError(false);
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: '3d40e330-081b-40ef-95ae-591405bd1f49', 
-          name: data.name,
-          email: data.email,
-          message: data.message,
-          subject: `New message from ${data.name} via portfolio`,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setIsSubmitted(true);
-        reset();
-        setTimeout(() => setIsSubmitted(false), 5000); 
-      } else {
-        throw new Error(result.message || 'Submission failed');
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setSubmitError(true);
-      setTimeout(() => setSubmitError(false), 5000);
-    } finally {
-      setIsSubmitting(false);
-    }
+import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
+type FormData = { name: string; email: string; message: string };
+export default function Contact() {
+  const [draftOpened, setDraftOpened] = useState(false);
+  const {register, handleSubmit, formState: {errors}} = useForm<FormData>();
+  const onSubmit = (data: FormData) => {
+    const subject = `Portfolio enquiry from ${data.name.trim()}`;
+    const body = `Hello Latiif,\n\n${data.message.trim()}\n\nFrom: ${data.name.trim()}\nEmail: ${data.email.trim()}`;
+    window.location.href = `mailto:kawumalatiif5@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setDraftOpened(true);
   };
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: 'Email',
-      value: 'shanonsimon082@gmail.com',
-      link: 'mailto:shanonsimon082@gmail.com',
-    },
-    {
-      icon: Phone,
-      title: 'Phone',
-      value: '+(256) 771-950092',
-      link: 'tel:+256771950092',
-    },
-    {
-      icon: MapPin,
-      title: 'Location',
-      value: 'Busega-Kampala, Uganda',
-      link: '#',
-    },
-  ];
-
-  return (
-    <section id="contact" className="py-20 bg-white">
-      <div className="container-responsive section-padding">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl font-bold mb-4 text-primary-900">Get In Touch</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Have a project in mind or want to discuss opportunities?
-            Feel free to reach out!
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-2xl font-bold mb-6 text-primary-900">Contact Information</h3>
-            
-            <div className="space-y-6 mb-8">
-              {contactInfo.map((info) => (
-                <a
-                  key={info.title}
-                  href={info.link}
-                  className="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-primary-50 transition-all duration-300 group border border-gray-100"
-                >
-                  <div className="p-3 bg-primary-100 rounded-lg mr-4 group-hover:bg-primary-200 transition-colors">
-                    <info.icon className="h-6 w-6 text-primary-700" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-700">{info.title}</p>
-                    <p className="text-primary-700 font-semibold">{info.value}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
-
-            <div className="bg-primary-50 rounded-2xl p-6 border border-primary-100">
-              <h4 className="font-bold text-lg mb-3 text-primary-900">Available for:</h4>
-              <ul className="space-y-2">
-                {[
-                  'Full-time positions',
-                  'Freelance projects',
-                  'Technical consulting',
-                  'Open source collaboration',
-                ].map((item) => (
-                  <li key={item} className="flex items-center text-gray-700">
-                    <CheckCircle className="h-5 w-5 text-primary-700 mr-2" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  Name *
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  {...register('name', { required: 'Name is required' })}
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    errors.name ? 'border-red-500' : 'border-gray-300'
-                  } focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent`}
-                  placeholder="Your name"
-                />
-                {errors.name && (
-                  <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email *
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  {...register('email', {
-                    required: 'Email is required',
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: 'Invalid email address',
-                    },
-                  })}
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
-                  } focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent`}
-                  placeholder="your.email@example.com"
-                />
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  {...register('message', { required: 'Message is required' })}
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    errors.message ? 'border-red-500' : 'border-gray-300'
-                  } focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent`}
-                  placeholder="Tell me about your project..."
-                />
-                {errors.message && (
-                  <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
-                )}
-              </div>
-
-              <button
-            type="submit"
-            disabled={isSubmitting}
-            className="btn-primary w-full flex items-center justify-center"
-          >
-            {isSubmitting ? (
-              'Sending...'
-            ) : isSubmitted ? (
-              <>
-                <CheckCircle className="mr-2" size={20} />
-                Message Sent!
-              </>
-            ) : submitError ? (
-              'Error – Try Again'
-            ) : (
-              <>
-                <Send className="mr-2" size={20} />
-                Send Message
-              </>
-            )}
-          </button>
-          {/* Optional: Show error details */}
-          {submitError && (
-            <p className="text-red-600 text-center">
-              Something went wrong. Please try again or email me directly.
-            </p>
-          )}
-            </form>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Contact;
+  const inputClass = 'w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary-500';
+  return <section id="contact" className="py-20 bg-white"><div className="container-responsive section-padding">
+    <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="text-center mb-12"><h2 className="text-4xl font-bold mb-4 text-primary-900">Get In Touch</h2><p className="text-gray-600 max-w-2xl mx-auto">Have a project, research collaboration or professional opportunity in mind? Let’s start a conversation.</p></motion.div>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div><h3 className="text-2xl font-bold mb-6 text-primary-900">Contact Information</h3><div className="space-y-6 mb-8">
+        <a href="mailto:kawumalatiif5@gmail.com" className="contact-card"><Mail className="text-primary-700 shrink-0"/><div className="min-w-0"><p className="text-gray-600 text-sm">Email</p><p className="text-primary-700 font-semibold break-words">kawumalatiif5@gmail.com</p></div></a>
+        <a href="tel:+256701010285" className="contact-card"><Phone className="text-primary-700 shrink-0"/><div><p className="text-gray-600 text-sm">Phone</p><p className="text-primary-700 font-semibold">+256 701 010285</p></div></a>
+        <div className="contact-card"><MapPin className="text-primary-700 shrink-0"/><div><p className="text-gray-600 text-sm">Location</p><p className="text-primary-700 font-semibold">Kibuli, Kampala, Uganda</p></div></div>
+      </div><div className="bg-primary-50 rounded-2xl p-6 border border-primary-100"><h4 className="font-bold text-lg mb-3 text-primary-900">Let’s talk about</h4><p className="text-gray-700 leading-relaxed">Software and web applications, network and IT operations, data analysis, or collaborative research.</p></div></div>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+        <div><label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Name *</label><input id="name" autoComplete="name" maxLength={100} aria-invalid={!!errors.name} aria-describedby={errors.name?'name-error':undefined} {...register('name',{required:'Enter your name.',validate:v=>!!v.trim()||'Enter your name.'})} className={inputClass} placeholder="Your name"/>{errors.name&&<p id="name-error" className="error-text" role="alert">{errors.name.message}</p>}</div>
+        <div><label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email *</label><input id="email" type="email" autoComplete="email" maxLength={254} aria-invalid={!!errors.email} aria-describedby={errors.email?'email-error':undefined} {...register('email',{required:'Enter your email.',pattern:{value:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,message:'Enter a valid email address.'}})} className={inputClass} placeholder="you@example.com"/>{errors.email&&<p id="email-error" className="error-text" role="alert">{errors.email.message}</p>}</div>
+        <div><label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Message *</label><textarea id="message" rows={5} maxLength={2000} aria-invalid={!!errors.message} aria-describedby={errors.message?'message-error':undefined} {...register('message',{required:'Enter a message.',validate:v=>!!v.trim()||'Enter a message.'})} className={inputClass} placeholder="Tell me about your enquiry…"/>{errors.message&&<p id="message-error" className="error-text" role="alert">{errors.message.message}</p>}</div>
+        <p className="text-sm text-gray-600">This opens a draft in your email app. Review it and press Send there.</p><button type="submit" className="btn-primary w-full flex items-center justify-center gap-2">Open Email Draft <ArrowUpRight size={20}/></button>
+        {draftOpened&&<p role="status" className="text-sm text-gray-600">Your email app was requested to open. Your message has not been sent by this website. If no app opens, email kawumalatiif5@gmail.com directly.</p>}
+      </form>
+    </div>
+  </div></section>;
+}
